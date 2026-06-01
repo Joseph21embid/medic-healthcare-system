@@ -1,0 +1,76 @@
+:root {
+    --color-primary: #2563eb;
+    --color-navy: #0f172a;
+    --color-teal: #0f766e;
+    --color-green: #16a34a;
+    --color-bg: #f8fafc;
+    --color-card: #ffffff;
+    --color-border: #e2e8f0;
+    --color-muted: #64748b;
+    --color-text: #1e293b;
+    --color-emergency: #dc2626;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--color-text);
+    background: var(--color-bg);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-welcome {
+    max-width: 760px;
+    padding: 40px;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.app-welcome h1 {
+    margin: 14px 0 16px;
+    color: var(--color-navy);
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.app-welcome p {
+    max-width: 620px;
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.app-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    color: var(--color-teal);
+    background: #ecfdf5;
+    border: 1px solid #ccfbf1;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-outline-primary {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-danger {
+    background: var(--color-emergency);
+    border-color: var(--color-emergency);
+}
+
