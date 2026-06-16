@@ -5,6 +5,8 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
     header("Location: ../public/login.php");
     exit;
 }
+
+include_once __DIR__ . "/../includes/patient_dashboard_data.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +29,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
 
             <nav class="sidebar-nav">
                 <a href="#" class="active"><span>Overview</span></a>
-                <a href="#"><span>My Profile</span></a>
+                <a href="../public/patient-onboarding.php"><span>My Profile</span></a>
                 <a href="#"><span>Medical Records</span></a>
                 <a href="#"><span>Appointments</span></a>
                 <a href="#"><span>Medications</span></a>
@@ -49,14 +51,14 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
 
                 <div>
                     <p class="eyebrow">Patient dashboard</p>
-                    <h1>Welcome back, <?php echo htmlspecialchars($_SESSION["name_tag"]); ?></h1>
+                    <h1>Welcome back, <?php echo htmlspecialchars($patient["full_name"]); ?></h1>
                 </div>
 
                 <div class="topbar-profile">
                     <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Patient avatar">
                     <div>
-                        <strong><?php echo htmlspecialchars($_SESSION["name_tag"]); ?></strong>
-                        <span>Health ID: MED-2026-001</span>
+                        <strong><?php echo htmlspecialchars($patient["full_name"]); ?></strong>
+                        <span>Health ID: <?php echo htmlspecialchars($patient["health_id"]); ?></span>
                     </div>
                 </div>
             </header>
@@ -64,12 +66,12 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
             <section class="hero-panel">
                 <div class="hero-copy">
                     <span>Health profile completion</span>
-                    <h2>Your medical information is 62% complete</h2>
+                    <h2>Your medical information is <?php echo htmlspecialchars($profile_completion); ?>% complete</h2>
                     <p>Complete your blood group, allergies, emergency contact, and current medications to help hospitals respond faster during care or emergencies.</p>
                     <div class="profile-progress" aria-label="Profile completion">
-                        <div class="profile-progress-bar"></div>
+                        <div class="profile-progress-bar" style="width: <?php echo htmlspecialchars($profile_completion); ?>%;"></div>
                     </div>
-                    <a href="#" class="primary-action">Complete profile</a>
+                    <a href="../public/patient-onboarding.php" class="primary-action">Complete profile</a>
                 </div>
 
                 <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80" alt="Doctor using tablet">
@@ -80,7 +82,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
                     <span class="stat-icon blue">ID</span>
                     <div>
                         <p>Health ID</p>
-                        <strong>MED-2026-001</strong>
+                        <strong><?php echo htmlspecialchars($patient["health_id"]); ?></strong>
                     </div>
                 </article>
 
@@ -88,7 +90,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
                     <span class="stat-icon green">AP</span>
                     <div>
                         <p>Upcoming Appointment</p>
-                        <strong>Jun 14, 2026</strong>
+                        <strong><?php echo htmlspecialchars($next_appointment_text); ?></strong>
                     </div>
                 </article>
 
@@ -96,15 +98,23 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
                     <span class="stat-icon teal">RX</span>
                     <div>
                         <p>Active Medications</p>
-                        <strong>3</strong>
+                        <strong><?php echo htmlspecialchars($active_medications_count); ?></strong>
                     </div>
                 </article>
 
                 <article class="stat-card emergency">
                     <span class="stat-icon red">SOS</span>
                     <div>
-                        <p>Emergency Access</p>
-                        <strong>Ready</strong>
+                        <p>Emergency Contact</p>
+                        <strong>
+                            <?php
+                            if (!empty($patient["emergency_contact_phone"])) {
+                                echo "Ready";
+                            } else {
+                                echo "Incomplete";
+                            }
+                            ?>
+                        </strong>
                     </div>
                 </article>
             </section>
@@ -119,7 +129,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
                     </div>
 
                     <div class="action-grid">
-                        <a href="#">
+                        <a href="../public/patient-onboarding.php">
                             <strong>Update Profile</strong>
                             <span>Add blood group, allergies, and emergency contact</span>
                         </a>
@@ -146,19 +156,19 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
                     <div class="summary-list">
                         <div>
                             <span>Blood group</span>
-                            <strong>O+</strong>
+                            <strong><?php echo htmlspecialchars($patient["blood_group"]); ?></strong>
                         </div>
                         <div>
                             <span>Genotype</span>
-                            <strong>AA</strong>
+                            <strong><?php echo htmlspecialchars($patient["genotype"]); ?></strong>
                         </div>
                         <div>
                             <span>Known allergies</span>
-                            <strong>Penicillin</strong>
+                            <strong><?php echo htmlspecialchars($patient["allergies"]); ?></strong>
                         </div>
                         <div>
                             <span>Chronic condition</span>
-                            <strong>None recorded</strong>
+                            <strong><?php echo htmlspecialchars($patient["chronic_conditions"]); ?></strong>
                         </div>
                     </div>
                 </article>
@@ -173,11 +183,11 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
                     </div>
 
                     <div class="appointment-card">
-                        <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=300&q=80" alt="Hospital building">
+                        <img src="<?php echo htmlspecialchars($next_appointment_image); ?>" alt="Hospital building">
                         <div>
-                            <strong>St. Catherine Medical Centre</strong>
-                            <span>General consultation</span>
-                            <p>Friday, June 14 at 10:30 AM</p>
+                            <strong><?php echo htmlspecialchars($next_appointment_hospital); ?></strong>
+                            <span><?php echo htmlspecialchars($next_appointment_reason); ?></span>
+                            <p><?php echo htmlspecialchars($next_appointment_text); ?></p>
                         </div>
                     </div>
                 </article>
@@ -186,26 +196,16 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "patient") {
                     <div class="card-heading">
                         <div>
                             <p class="eyebrow">Medication reminders</p>
-                            <h3>Today’s schedule</h3>
+                            <h3>Current medication summary</h3>
                         </div>
                         <a href="#">Manage</a>
                     </div>
 
                     <div class="timeline">
                         <div class="timeline-item">
-                            <span>8:00 AM</span>
-                            <strong>Vitamin D</strong>
-                            <p>1 tablet after breakfast</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span>2:00 PM</span>
-                            <strong>Amoxicillin</strong>
-                            <p>1 capsule after meal</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span>9:00 PM</span>
-                            <strong>Blood pressure check</strong>
-                            <p>Record reading before sleep</p>
+                            <span>Current medications</span>
+                            <strong><?php echo htmlspecialchars($patient["current_medications"]); ?></strong>
+                            <p>This will become a full reminder schedule when we build the medication module.</p>
                         </div>
                     </div>
                 </article>

@@ -181,7 +181,7 @@ function login_google_user($user_id, $email, $role, $name_tag)
     unset($_SESSION["google_auth_state"]);
 
     if ($role == "patient") {
-        redirect_to("../dashboard/patient.php");
+        redirect_to("../public/patient-onboarding.php");
     }
 
     if ($role == "hospital") {

@@ -126,7 +126,7 @@ if (is_post_request() && isset($_POST["signup_submit"])) {
             $_SESSION["name_tag"] = $name_tag;
 
             if ($role == "patient") {
-                redirect_to("../dashboard/patient.php");
+                redirect_to("../public/patient-onboarding.php");
             } else {
                 redirect_to("../dashboard/hospital.php");
             }

@@ -43,6 +43,15 @@ body {
     grid-template-columns: minmax(0, 1.05fr) minmax(440px, 0.95fr);
 }
 
+.signup-choice-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+    background:
+        linear-gradient(120deg, rgba(15, 23, 42, 0.92), rgba(15, 118, 110, 0.76)),
+        url("https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1800&q=80") center/cover;
+}
+
 .signup-visual {
     position: relative;
     display: flex;
@@ -64,6 +73,18 @@ body {
         radial-gradient(circle at 18% 22%, rgba(37, 99, 235, 0.24), transparent 28%),
         radial-gradient(circle at 86% 72%, rgba(20, 184, 166, 0.2), transparent 32%);
     opacity: 0.8;
+}
+
+.patient-visual {
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(37, 99, 235, 0.74)),
+        url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=80") center/cover;
+}
+
+.hospital-visual {
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 118, 110, 0.74)),
+        url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=80") center/cover;
 }
 
 .login-page .signup-visual {
@@ -97,6 +118,279 @@ body {
     height: 44px;
     border-radius: 8px;
     box-shadow: 0 10px 24px rgba(37, 99, 235, 0.26);
+}
+
+.choice-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 32px;
+}
+
+.choice-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.34), rgba(15, 23, 42, 0));
+}
+
+.choice-hero .brand-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.choice-login-link {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: background 220ms ease, transform 220ms ease, border-color 220ms ease;
+}
+
+.choice-login-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.55);
+    transform: translateY(-2px);
+}
+
+.choice-content {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 720px);
+    margin: auto 0;
+    padding: 56px 0;
+    color: #ffffff;
+}
+
+.choice-content h1 {
+    margin: 0 0 18px;
+    font-size: 3.45rem;
+    line-height: 1.03;
+    font-weight: 800;
+}
+
+.choice-content p {
+    width: min(100%, 630px);
+    margin: 0 0 28px;
+    color: #dbeafe;
+    font-size: 1.04rem;
+    line-height: 1.75;
+}
+
+.signup-selector {
+    position: relative;
+    width: min(100%, 620px);
+}
+
+.selector-trigger {
+    width: 100%;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    color: var(--navy);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.24);
+    text-align: left;
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.selector-trigger:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 26px 60px rgba(15, 23, 42, 0.32);
+}
+
+.selector-trigger strong,
+.selector-option strong {
+    display: block;
+    color: var(--navy);
+    font-weight: 800;
+}
+
+.selector-trigger small,
+.selector-option small {
+    display: block;
+    margin-top: 3px;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.selector-trigger svg {
+    flex: 0 0 auto;
+    color: var(--primary);
+    transition: transform 220ms ease;
+}
+
+.signup-selector.is-open .selector-trigger svg {
+    transform: rotate(180deg);
+}
+
+.selector-menu {
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    top: calc(100% + 10px);
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(219, 228, 238, 0.94);
+    border-radius: 8px;
+    box-shadow: 0 24px 62px rgba(15, 23, 42, 0.28);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+}
+
+.signup-selector.is-open .selector-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.selector-option {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    color: var(--text);
+    background: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.selector-option:hover {
+    background: #f8fbff;
+    border-color: #cfe0ff;
+    transform: translateX(4px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.option-icon {
+    width: 52px;
+    height: 52px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 8px;
+}
+
+.patient-icon {
+    color: #1d4ed8;
+    background: #dbeafe;
+}
+
+.hospital-icon {
+    color: #0f766e;
+    background: #ccfbf1;
+}
+
+.choice-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    min-height: 100vh;
+    padding: 32px;
+    background: rgba(248, 250, 252, 0.96);
+    backdrop-filter: blur(16px);
+}
+
+.choice-image {
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(219, 228, 238, 0.88);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+}
+
+.choice-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    object-fit: cover;
+    transition: transform 520ms ease;
+}
+
+.choice-image:hover img {
+    transform: scale(1.04);
+}
+
+.identity-note {
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.07);
+}
+
+.identity-note span {
+    display: inline-flex;
+    margin-bottom: 8px;
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.identity-note h2 {
+    margin: 0 0 8px;
+    color: var(--navy);
+    font-size: 1.7rem;
+    font-weight: 800;
+}
+
+.identity-note p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.choice-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.choice-stat-grid div {
+    min-height: 116px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.choice-stat-grid strong {
+    display: block;
+    color: var(--primary);
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.choice-stat-grid span {
+    display: block;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
 }
 
 .visual-content {
@@ -187,6 +481,10 @@ body {
 .metric-card span {
     color: var(--muted);
     font-size: 0.88rem;
+}
+
+.hospital-metric strong {
+    color: var(--teal);
 }
 
 .signup-form-section {
@@ -533,12 +831,24 @@ body {
 }
 
 @media (max-width: 992px) {
-    .signup-page {
+    .signup-page,
+    .signup-choice-page {
         grid-template-columns: 1fr;
     }
 
-    .signup-visual {
+    .signup-visual,
+    .choice-hero,
+    .choice-panel {
         min-height: auto;
+    }
+
+    .choice-content {
+        margin: 0;
+        padding: 60px 0 40px;
+    }
+
+    .choice-content h1 {
+        font-size: 2.4rem;
     }
 
     .visual-content {
@@ -552,11 +862,17 @@ body {
     .image-panel {
         display: none;
     }
+
+    .choice-panel {
+        padding-top: 0;
+    }
 }
 
 @media (max-width: 576px) {
     .signup-visual,
-    .signup-form-section {
+    .signup-form-section,
+    .choice-hero,
+    .choice-panel {
         padding: 24px 18px;
     }
 
@@ -566,5 +882,22 @@ body {
 
     .visual-content h1 {
         font-size: 1.95rem;
+    }
+
+    .choice-content h1 {
+        font-size: 2rem;
+    }
+
+    .selector-option {
+        grid-template-columns: 1fr;
+    }
+
+    .option-icon {
+        width: 46px;
+        height: 46px;
+    }
+
+    .choice-stat-grid {
+        grid-template-columns: 1fr;
     }
 }
