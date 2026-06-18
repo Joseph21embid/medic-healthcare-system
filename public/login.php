@@ -43,6 +43,13 @@
                     <p>Use your email and password to access your account.</p>
                 </div>
 
+                <?php
+                if (isset($_SESSION["password_reset_success"])) {
+                    echo "<p class=\"form-alert success-alert\">" . htmlspecialchars($_SESSION["password_reset_success"]) . "</p>";
+                    unset($_SESSION["password_reset_success"]);
+                }
+                ?>
+
                 <button type="button" class="google-button" data-google-auth="login">
                     <span>G</span>
                     Continue with Google
@@ -65,7 +72,7 @@
                         <div class="col-12">
                             <div class="d-flex align-items-center justify-content-between gap-3">
                                 <label for="password" class="form-label mb-0">Password</label>
-                                <a href="#" class="small-link">Forgot password?</a>
+                                <a href="forgot-password.php" class="small-link">Forgot password?</a>
                             </div>
                             <div class="password-field mt-2">
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>

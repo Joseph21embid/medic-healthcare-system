@@ -3,4 +3,5 @@ vendor/
 .env
 .DS_Store
 Thumbs.db
-
+public/uploads/profile_photos/*
+!public/uploads/profile_photos/.gitkeep

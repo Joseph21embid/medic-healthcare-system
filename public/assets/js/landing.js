@@ -10,21 +10,21 @@ if (navToggle && mainNav) {
 var moduleData = {
     patients: {
         image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
-        label: "Patient workspace",
-        title: "A dashboard that begins with the patient profile.",
-        text: "Medic starts by collecting patient information that can later power medical summaries, appointments, emergency response, and medication awareness."
+        label: "Individual workspace",
+        title: "A dashboard that begins with the individual profile.",
+        text: "Medic starts by collecting individual information that can later power medical summaries, appointments, emergency response, and medication awareness."
     },
     hospitals: {
         image: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=1200&q=80",
-        label: "Hospital network",
-        title: "A structured path for hospitals and clinics to join.",
-        text: "Hospitals will later complete verification questionnaires before getting full access to appointment and record management features."
+        label: "Organization network",
+        title: "A structured path for hospitals, clinics, and medical firms to join.",
+        text: "Medical organizations will later complete verification questionnaires before getting full access to appointment and record management features."
     },
     emergency: {
         image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1200&q=80",
         label: "Emergency response",
-        title: "Critical patient information prepared before urgent moments.",
-        text: "The emergency layer is planned to connect patient location, medical summary, emergency contacts, and nearby hospital response workflows."
+        title: "Critical individual information prepared before urgent moments.",
+        text: "The emergency layer is planned to connect individual location, medical summary, emergency contacts, and nearby organization response workflows."
     }
 };
 

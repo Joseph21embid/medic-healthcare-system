@@ -195,6 +195,19 @@ body.sidebar-open {
     object-fit: cover;
 }
 
+.avatar-face {
+    width: 46px;
+    height: 46px;
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 46px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 50%;
+    font-size: 1.55rem;
+    line-height: 1;
+}
+
 .topbar-profile strong,
 .topbar-profile span {
     display: block;

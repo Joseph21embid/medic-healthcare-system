@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Patient Profile | Medic</title>
+    <title>Complete Individual Profile | Medic</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/patient-onboarding.css">
 </head>
@@ -19,10 +19,10 @@
             </nav>
 
             <div class="intro-content">
-                <span class="eyebrow">Patient onboarding</span>
-                <h1>Complete your health profile before using the full dashboard.</h1>
+                <span class="eyebrow">Individual onboarding</span>
+                <h1>Complete or update your health profile.</h1>
                 <p>
-                    This information helps hospitals understand your basic medical background, emergency contacts,
+                    This information helps approved medical organizations understand your basic medical background, emergency contacts,
                     allergies, and current health needs faster.
                 </p>
 
@@ -36,9 +36,9 @@
         <section class="onboarding-form-section">
             <div class="form-shell">
                 <div class="form-heading">
-                    <span class="eyebrow">Step 1 of 1</span>
-                    <h2>Patient profile details</h2>
-                    <p>Fill in the details you know now. You can update them later from your profile page.</p>
+                    <span class="eyebrow">Profile form</span>
+                    <h2>Individual profile details</h2>
+                    <p>Fill in the details you know now. You can return here later to update your profile.</p>
                 </div>
 
                 <?php
@@ -47,11 +47,32 @@
                 }
                 ?>
 
-                <form action="" method="post" class="onboarding-form">
+                <form action="" method="post" class="onboarding-form" enctype="multipart/form-data">
                     <div class="form-section">
                         <h3>Personal Information</h3>
 
                         <div class="row g-3">
+                            <div class="col-12">
+                                <div class="profile-photo-field">
+                                    <div class="profile-photo-preview">
+                                        <?php
+                                        if (!empty($profile_photo)) {
+                                            echo "<img src=\"" . htmlspecialchars($profile_photo) . "\" alt=\"Current profile photo\">";
+                                        } else {
+                                            echo "<span>🙂</span>";
+                                        }
+                                        ?>
+                                    </div>
+
+                                    <div>
+                                        <label for="profilePhoto" class="form-label">Profile photo</label>
+                                        <input type="file" class="form-control" id="profilePhoto" name="profile_photo" accept="image/*" capture="user">
+                                        <p class="helper-text">Optional. Take a photo or upload JPG, PNG, or WEBP. If you skip this, your dashboard will use a default face based on gender.</p>
+                                        <p class="field-error"><?php echo htmlspecialchars($errors["profile_photo"]); ?></p>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-md-6">
                                 <label for="fullName" class="form-label">Full name</label>
                                 <input type="text" class="form-control" id="fullName" name="full_name" placeholder="Enter full name" value="<?php echo htmlspecialchars($full_name); ?>" required>
@@ -62,6 +83,13 @@
                                 <label for="phone" class="form-label">Phone number</label>
                                 <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number" value="<?php echo htmlspecialchars($phone); ?>" required>
                                 <p class="field-error"><?php echo htmlspecialchars($errors["phone"]); ?></p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="nhisNumber" class="form-label">NHIS number</label>
+                                <input type="text" class="form-control" id="nhisNumber" name="nhis_number" placeholder="Enter NHIS number if available" value="<?php echo htmlspecialchars($nhis_number); ?>">
+                                <p class="helper-text">Optional for now. This will later help approved medical organizations identify your record correctly.</p>
+                                <p class="field-error"><?php echo htmlspecialchars($errors["nhis_number"]); ?></p>
                             </div>
 
                             <div class="col-md-6">
@@ -156,8 +184,8 @@
                     </div>
 
                     <div class="form-actions">
-                        <a href="../dashboard/patient.php" class="secondary-action">Skip for now</a>
-                        <button type="submit" name="save_onboarding" class="primary-action">Save and continue</button>
+                        <a href="individual-profile.php" class="secondary-action">Back to profile</a>
+                        <button type="submit" name="save_onboarding" class="primary-action">Save profile</button>
                     </div>
                 </form>
             </div>

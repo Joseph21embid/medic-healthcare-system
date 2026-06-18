@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Signup | National Healthcare System</title>
+    <title>Organization Signup | National Healthcare System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/signup.css">
 </head>
@@ -19,10 +19,10 @@
             </nav>
 
             <div class="visual-content reveal-left">
-                <span class="eyebrow">Hospital and clinic access</span>
+                <span class="eyebrow">Hospital, clinic, and medical firm access</span>
                 <h1>Register your medical organization for verified platform access.</h1>
                 <p>
-                    Hospital accounts will go through extra profile and verification questions before full dashboard access is approved.
+                    Organization accounts will go through extra profile and verification questions before full dashboard access is approved.
                 </p>
             </div>
 
@@ -39,8 +39,8 @@
             <div class="form-shell reveal-right">
                 <div class="form-heading">
                     <span class="section-label">Organization signup</span>
-                    <h2>Create hospital account</h2>
-                    <p>Use your official organization details. More verification forms will be added before the hospital dashboard is opened fully.</p>
+                    <h2>Create organization account</h2>
+                    <p>Use your official organization details. More verification forms will be added before the organization dashboard is opened fully.</p>
                 </div>
 
                 <button type="button" class="google-button" data-google-auth="signup">
@@ -127,7 +127,7 @@
                 </form>
 
                 <p class="signin-text">
-                    Signing up as a patient? <a href="patient-signup.php">Use individual signup</a>
+                    Signing up as an individual? <a href="patient-signup.php">Use individual signup</a>
                 </p>
                 <p class="signin-text mt-2">
                     Already have an account? <a href="login.php">Sign in</a>

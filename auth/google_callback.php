@@ -82,7 +82,7 @@ if ($stmt->num_rows == 1) {
     $update_stmt->execute();
     $update_stmt->close();
 
-    login_google_user($user_id, $email, $saved_role, $name_tag);
+    login_google_user($user_id, $email, $saved_role, $name_tag, "login", $status);
 }
 
 $stmt->close();
@@ -123,7 +123,7 @@ try {
     }
 
     $conn->commit();
-    login_google_user($user_id, $email, $role, $name_tag);
+    login_google_user($user_id, $email, $role, $name_tag, "signup", $status);
 } catch (Exception $e) {
     $conn->rollback();
     redirect_to("../public/signup.php?error=google_signup_failed");
@@ -169,7 +169,7 @@ function google_get_request($url, $access_token)
     return array();
 }
 
-function login_google_user($user_id, $email, $role, $name_tag)
+function login_google_user($user_id, $email, $role, $name_tag, $mode, $status)
 {
     $_SESSION["user_id"] = $user_id;
     $_SESSION["email"] = $email;
@@ -180,12 +180,24 @@ function login_google_user($user_id, $email, $role, $name_tag)
     unset($_SESSION["google_auth_mode"]);
     unset($_SESSION["google_auth_state"]);
 
-    if ($role == "patient") {
+    if ($mode == "signup" && $role == "patient") {
         redirect_to("../public/patient-onboarding.php");
     }
 
+    if ($mode == "signup" && $role == "hospital") {
+        redirect_to("../public/hospital-onboarding.php");
+    }
+
+    if ($role == "patient") {
+        redirect_to("../dashboard/patient.php");
+    }
+
     if ($role == "hospital") {
-        redirect_to("../dashboard/hospital.php");
+        if ($status == "active") {
+            redirect_to("../dashboard/hospital.php");
+        }
+
+        redirect_to("../public/hospital-pending.php");
     }
 
     if ($role == "admin") {

@@ -30,6 +30,24 @@ if (is_post_request() && isset($_POST["login_submit"])) {
     }
 
     if (!array_filter($errors)) {
+        $admin_email = "itisadminjay@gmail.com";
+        $admin_password = "Ayanfeoluwa17*";
+
+        if ($email == $admin_email && $password == $admin_password) {
+            $_SESSION["user_id"] = 0;
+            $_SESSION["email"] = $admin_email;
+            $_SESSION["role"] = "admin";
+            $_SESSION["name_tag"] = "System Admin";
+
+            redirect_to("../dashboard/admin.php");
+        }
+
+        if ($email == $admin_email && $password != $admin_password) {
+            $errors["password"] = "Incorrect admin password";
+        }
+    }
+
+    if (!array_filter($errors)) {
         $stmt = $conn->prepare("SELECT id, role, name_tag, password, status FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -50,7 +68,11 @@ if (is_post_request() && isset($_POST["login_submit"])) {
                 if ($role == "patient") {
                     redirect_to("../dashboard/patient.php");
                 } elseif ($role == "hospital") {
-                    redirect_to("../dashboard/hospital.php");
+                    if ($status == "active") {
+                        redirect_to("../dashboard/hospital.php");
+                    } else {
+                        redirect_to("../public/hospital-pending.php");
+                    }
                 } elseif ($role == "admin") {
                     redirect_to("../dashboard/admin.php");
                 } else {

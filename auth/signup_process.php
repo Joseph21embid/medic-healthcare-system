@@ -128,7 +128,7 @@ if (is_post_request() && isset($_POST["signup_submit"])) {
             if ($role == "patient") {
                 redirect_to("../public/patient-onboarding.php");
             } else {
-                redirect_to("../dashboard/hospital.php");
+                redirect_to("../public/hospital-onboarding.php");
             }
         } catch (Exception $e) {
             $conn->rollback();

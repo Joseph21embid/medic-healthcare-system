@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Signup | National Healthcare System</title>
+    <title>Individual Signup | National Healthcare System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/signup.css">
 </head>
@@ -19,18 +19,18 @@
             </nav>
 
             <div class="visual-content reveal-left">
-                <span class="eyebrow">Individual patient access</span>
-                <h1>Create your patient account for care, records, and emergency support.</h1>
+                <span class="eyebrow">Individual access</span>
+                <h1>Create your individual account for care, records, and emergency support.</h1>
                 <p>
-                    Your patient profile will later connect to your NHIS number, appointments, medical summary, medications, and emergency information.
+                    Your individual profile will later connect to your NHIS number, appointments, medical summary, medications, and emergency information.
                 </p>
             </div>
 
             <div class="image-panel reveal-up">
-                <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=1200&q=80" alt="Patient speaking with a healthcare worker">
+                <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=1200&q=80" alt="Individual speaking with a healthcare worker">
                 <div class="metric-card">
                     <strong>NHIS</strong>
-                    <span>Planned patient identification</span>
+                    <span>Planned individual identification</span>
                 </div>
             </div>
         </section>
@@ -38,14 +38,14 @@
         <section class="signup-form-section">
             <div class="form-shell reveal-right">
                 <div class="form-heading">
-                    <span class="section-label">Patient signup</span>
-                    <h2>Create patient account</h2>
-                    <p>Use your personal details. After signup, you will complete your patient profile.</p>
+                    <span class="section-label">Individual signup</span>
+                    <h2>Create individual account</h2>
+                    <p>Use your personal details. After signup, you will complete your individual profile.</p>
                 </div>
 
                 <button type="button" class="google-button" data-google-auth="signup">
                     <span>G</span>
-                    Continue with Google
+                    Sign up with Google
                 </button>
 
                 <div class="divider">
@@ -121,13 +121,13 @@
                         </div>
 
                         <div class="col-12">
-                            <button type="submit" name="signup_submit" class="btn submit-button w-100">Create patient account</button>
+                            <button type="submit" name="signup_submit" class="btn submit-button w-100">Create individual account</button>
                         </div>
                     </div>
                 </form>
 
                 <p class="signin-text">
-                    Registering a medical organization? <a href="hospital-signup.php">Use hospital signup</a>
+                    Registering a medical organization? <a href="hospital-signup.php">Use organization signup</a>
                 </p>
                 <p class="signin-text mt-2">
                     Already have an account? <a href="login.php">Sign in</a>

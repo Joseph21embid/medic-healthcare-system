@@ -22,14 +22,14 @@
                 <span class="eyebrow">Create your account</span>
                 <h1>Choose how you want to join the healthcare network.</h1>
                 <p>
-                    Patients use their profile and NHIS number to access healthcare services. Hospitals, clinics, and medical firms register separately for verification and professional access.
+                    Individuals use their profile and NHIS number to access healthcare services. Hospitals, clinics, and medical firms register separately for verification and professional access.
                 </p>
 
                 <div class="signup-selector" data-signup-selector>
                     <button type="button" class="selector-trigger" data-selector-trigger aria-expanded="false">
                         <span>
                             <strong>Select signup type</strong>
-                            <small>Patient or medical organization</small>
+                            <small>Individual or medical organization</small>
                         </span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="m6 9 6 6 6-6"></path>
@@ -46,7 +46,7 @@
                             </span>
                             <span>
                                 <strong>Sign up as an individual</strong>
-                                <small>Create a patient account for records, appointments, NHIS identity, and emergency access.</small>
+                                <small>Create an individual account for records, appointments, NHIS identity, and emergency access.</small>
                             </span>
                         </a>
 
@@ -62,7 +62,7 @@
                             </span>
                             <span>
                                 <strong>Sign up as a hospital, clinic, or medical firm</strong>
-                                <small>Register an organization account for verification before accessing hospital tools.</small>
+                                <small>Register an organization account for verification before accessing organization tools.</small>
                             </span>
                         </a>
                     </div>
@@ -72,14 +72,14 @@
 
         <section class="choice-panel reveal-right">
             <div class="choice-image">
-                <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1200&q=80" alt="Healthcare team reviewing patient records">
+                <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1200&q=80" alt="Healthcare team reviewing individual records">
             </div>
 
             <div class="identity-note">
-                <span>Patient identification</span>
+                <span>Individual identification</span>
                 <h2>NHIS number stays central.</h2>
                 <p>
-                    As we build the patient profile and hospital tools, the patient's NHIS number will serve as the key identification hospitals use to find and verify patient records.
+                    As we build the individual profile and organization tools, the individual's NHIS number will serve as the key identification approved medical organizations use to find and verify records.
                 </p>
             </div>
 
