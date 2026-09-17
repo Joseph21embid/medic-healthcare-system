@@ -4,6 +4,11 @@ include_once __DIR__ . "/../includes/session.php";
 include_once __DIR__ . "/../includes/functions.php";
 include_once __DIR__ . "/../config/db.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
 $email = "";
 $otp = "";
 $password = "";
@@ -20,11 +25,47 @@ $errors = array(
 
 function send_password_reset_otp($email, $otp)
 {
-    $subject = "Medic password reset OTP";
-    $message = "Your Medic password reset OTP is: " . $otp . "\n\nThis code expires in 10 minutes. If you did not request this, ignore this email.";
-    $headers = "From: no-reply@medic.local";
+    $mail_config_path = __DIR__ . "/../config/mail.php";
 
-    return @mail($email, $subject, $message, $headers);
+    if (!file_exists($mail_config_path)) {
+        return false;
+    }
+
+    $mail_config = include $mail_config_path;
+
+    try {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = $mail_config["host"];
+        $mail->SMTPAuth = true;
+        $mail->Username = $mail_config["username"];
+        $mail->Password = $mail_config["password"];
+
+        if ($mail_config["encryption"] == "ssl") {
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        } else {
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        }
+
+        $mail->Port = $mail_config["port"];
+        $mail->setFrom($mail_config["from_email"], $mail_config["from_name"]);
+        $mail->addAddress($email);
+        $mail->isHTML(true);
+        $mail->Subject = "Medic password reset OTP";
+        $mail->Body = "
+            <h2>Password reset OTP</h2>
+            <p>Your Medic password reset OTP is:</p>
+            <h1 style='letter-spacing: 6px;'>{$otp}</h1>
+            <p>This code expires in 10 minutes.</p>
+            <p>If you did not request this, please ignore this email.</p>
+        ";
+        $mail->AltBody = "Your Medic password reset OTP is: " . $otp . ". This code expires in 10 minutes.";
+        $mail->send();
+
+        return true;
+    } catch (Exception $e) {
+        return false;
+    }
 }
 
 if (is_post_request() && isset($_POST["request_otp"])) {
